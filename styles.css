@@ -1,0 +1,11 @@
+.content-wrapper {
+  display: flex;
+}
+
+.dummy {
+  /* display: block; */
+  width: 100px;
+  min-height: 100px;
+  padding: 50px;
+  background-color: black;
+}
