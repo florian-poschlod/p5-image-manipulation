@@ -1,6 +1,6 @@
 let img
-let imgWidth = 40
-let scaleFactor = 20
+let imgWidth = 600
+let scaleFactor = 1
 let r = 0
 let g = 0
 let b = 0
@@ -30,7 +30,7 @@ function draw() {
       g = img.pixels[index + 1]
       b = img.pixels[index + 2]
 
-      console.log(r, g, b)
+      // console.log(r, g, b)
 
       fill(r, g, b)
       noStroke()
