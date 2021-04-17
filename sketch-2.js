@@ -8,10 +8,11 @@ let playHeadY = 0;
 let playHeadSpeed = 1;
 let osc;
 let pxAverage;
+let amplitude
 let playing = false
 
 function preload() {
-  img = loadImage('image09.jpeg');
+  img = loadImage('image10.jpeg');
 }
 
 function setup() {
@@ -22,10 +23,14 @@ function setup() {
   playHeadHeight = img.height / 4;
   osc = new p5.Oscillator();
   osc.amp(1)
+  osc.scale(0, 1, 0, 1)
+  amplitude = new p5.Amplitude()
+  amplitude.setInput(osc)
 }
 
 function draw() {
   image(img, 0, 0)
+  loadPixels()
 
   playHead = get(playHeadX, playHeadY, playHeadWidth, playHeadHeight)
   playHead.loadPixels()
@@ -36,12 +41,15 @@ function draw() {
 
   // pxAverage = Math.round((playHead.pixels[0] + playHead.pixels[1] + playHead.pixels[2]) / 3)
   pxAverage = playHead.pixels.reduce((acc, curr) => acc + curr) / playHead.pixels.length
-  console.log(pxAverage)
-
-  console.log(pxAverage)
 
   osc.setType('square')
-  osc.freq(pxAverage * 2)
+  osc.freq(pxAverage * 0.5)
+
+  let level = amplitude.getLevel()
+  // pixels.forEach(px => level > 0.5 && px === 255)
+
+
+  console.log(level)
 
   if (playHeadX < width - playHeadWidth) {
     playHeadX += playHeadSpeed
